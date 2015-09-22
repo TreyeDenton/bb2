@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import TextField, PasswordField
+from wtforms import TextField, PasswordField, StringField
 from wtforms import validators
 
 from bb2.models import User
@@ -28,3 +28,6 @@ class LoginForm(Form):
             return False
 
         return True
+
+class NewProjectForm(Form):
+    name = StringField('name', validators=[validators.required()])

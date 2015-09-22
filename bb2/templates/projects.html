@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Projects{% endblock %}
+
+{% block body%}
+<div>
+	<h1>Project List</h1>
+	<ul>
+		{% for project in projects %}
+		<li>{{ project.name }}</li>
+		{% endfor %}
+	</ul>
+	<form method="POST" action="" name="Create Project">
+		{{ form.csrf_token }}
+		{{ form.name.label }} {{ form.name(size=20) }}
+		<input type="submit" value="Create Project">
+	</form>
+</div>
+{% endblock %}

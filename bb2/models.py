@@ -40,3 +40,31 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return '<User %r>' % self.username
+
+
+class Project(db.Model):
+    __tablename__ = "projects"
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(), unique=True)
+    units = db.relationship('Unit', backref='project')
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return '<Project %r>' % self.name
+
+
+class Unit(db.Model):
+    __tablename__ = "units"
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(), unique=True)
+    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return'<Unit %r>' % self.name
+
+
